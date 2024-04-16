@@ -252,29 +252,28 @@ class MyClass:
                             'updated_at': formatted_date}
         
         self.transactionList.append(transaction_logs)
-        print("Transaction Save...")
+        print(msgColors.GREEN + "Transaction Save..." + msgColors.RESET)
     
     def showBestAcc(self):
         count = len(self.accountList)
         sorted_balance = sorted(self.accountList, key=lambda x: x['balance'], reverse=True)
         top_3 = sorted_balance[:3]
         if count != 0:
-            print("=" * 40)
-            print("Best Account")
-            print("-" * 40)
-            print(" Total Number of Account:", count)
-            print("-" * 40)
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            print(msgColors.GREEN + "Best Account" + msgColors.RESET)
+            print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
+            print(msgColors.GREEN + " Total Number of Account:" + msgColors.RESET + str(count))
+            print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             for i, x in enumerate(top_3):
-                # print(f"Top {i+1}: Account_Number: {x['accNum']}, Name: {x['accName']}, Balance: {x['balance']}")
-                print(f"  Top: {i+1}")
+                print(msgColors.GREEN + "  Top: " + msgColors.RESET + str(i+1))
                 for key, value in x.items():
-                    print(f"    {key}: {value}")
-                print("-" * 40)
+                    print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
+                print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
         else:
-            print("No Registered Account...")
+            print(msgColors.RED + "No Registered Account..." + msgColors.RESET)
         
     def showVIPacc(self):
-        
+        err_level_acc = "No Account have reach this VIP Level..."
         count = len(self.accountList)
         
         gold = []
@@ -282,14 +281,15 @@ class MyClass:
         bronze = []
         
         if count != 0:
-            print("VIP Account")
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            print(msgColors.GREEN + "VIP Account" + msgColors.RESET)
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
             for i in self.accountList:
                 user_blance = i['balance']
                 if float(user_blance) >= 1000000:
                     acc_num = i['accNum']
                     acc_name = i['accName']
                     user_blance = i['balance']
-                    
                     acc = {
                         'accNum': acc_num,
                         'accName': acc_name,
@@ -300,7 +300,6 @@ class MyClass:
                     acc_num = i['accNum']
                     acc_name = i['accName']
                     user_blance = i['balance']
-                    
                     acc = {
                         'accNum': acc_num,
                         'accName': acc_name,
@@ -311,114 +310,116 @@ class MyClass:
                     acc_num = i['accNum']
                     acc_name = i['accName']
                     user_blance = i['balance']
-                    
                     acc = {
                         'accNum': acc_num,
                         'accName': acc_name,
                         'balance' : user_blance
                     }
                     bronze.append(acc)
-            
+                    
             count_gold = len(gold)
-            print("=" * 40)
-            print("Gold")
-            print("-" * 40)
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            print(msgColors.GREEN + "Silver" + msgColors.RESET)
+            print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             if count_gold != 0:
                 for data in gold:
                     for key, value in data.items():
                         if key == 'accNum':
-                            print(f" {key}: {value}")
+                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                         else:
-                            print(f"    {key}: {value}")
-                    print("-" * 40)
+                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
+                    print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             else:
-                print("No Account have reach this VIP Level...")
-                print("=" * 40)
+                print(msgColors.RED + err_level_acc + msgColors.RESET)
+                print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
             
             count_silver = len(silver)
-            print("=" * 40)
-            print("Silver")
-            print("-" * 40)
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            print(msgColors.GREEN + "Silver" + msgColors.RESET)
+            print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             if count_silver != 0:
                 for data in silver:
                     for key, value in data.items():
                         if key == 'accNum':
-                            print(f" {key}: {value}")
+                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                         else:
-                            print(f"    {key}: {value}")
-                    print("-" * 40)
+                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
+                    print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             else:
-                print("No Account have reach this VIP Level...")
-                print("=" * 40)
+                print(msgColors.RED + err_level_acc + msgColors.RESET)
+                print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
                     
             count_bronze = len(bronze)
-            print("=" * 40)
-            print("Bronze")
-            print("-" * 40)
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            print(msgColors.GREEN + "Bronze" + msgColors.RESET)
+            print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             if count_bronze != 0:
                 for data in bronze:
                     for key, value in data.items():
                         if key == 'accNum':
-                            print(f"  {key}: {value}")
+                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                         else:
-                            print(f"    {key}: {value}")
-                    print("-" * 40)
+                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
+                    print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             else:
-                print("No Account have reach this VIP Level...")
-                print("=" * 40) 
+                print(msgColors.RED + err_level_acc + msgColors.RESET)
+                print(msgColors.GREEN + "=" * 40 + msgColors.RESET) 
             
         else: 
-            print("No Registered Account...")
+            print(msgColors.RED + "No Registered Account..." + msgColors.RESET)
         
     def removeAcc(self):
         acc_num_key = 'accNum'
         count = len(self.accountList)
         if count != 0:
-            print("Remove Account")
-            user_input = input("Enter Account Number: ")
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            print(msgColors.GREEN + "Remove Account" + msgColors.RESET)
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            user_input = input(msgColors.YELLOW + "Enter Account Number: " + msgColors.RESET)
             if user_input.isdigit():
                 if len(user_input) == 6:
                     for account in self.accountList:
                         if account[acc_num_key] == user_input:
-                            confirm = input("Do you want to delete this account. (Y/N):")
+                            confirm = input(msgColors.YELLOW + "Do you want to delete this account. (Y/N): " + msgColors.RESET)
                             if confirm == 'Y' or confirm == 'y':
                                 self.accountList.remove(account)
-                                print("Account successfully deleted...")
+                                print(msgColors.RED + "Account successfully deleted..." + msgColors.RESET)
                             elif confirm == 'N' or confirm == 'n':
                                 self.main()
                             else:
-                                print("Deleting account has been cancelled...")
+                                print(msgColors.RED + "Deleting account has been cancelled..." + msgColors.RESET)
                 else:
-                    print("Invalid Account Number (must be 6 digit)")
+                    print(msgColors.RED + "Invalid Account Number (must be 6 digit)" + msgColors.RESET)
             else:
-                print("Invalid Input... (input must be a 6 digit integer)") 
+                print(msgColors.RED + "Invalid Input... (input must be a 6 digit integer)" + msgColors.RESET) 
         else:
-            print("No Registerd Account found!..")  
+            print(msgColors.RED + "No Registerd Account found!.." + msgColors.RESET)  
         
     def updateAcc(self):
         #acc_num_key = 'accNum'
         count = len(self.accountList)
         if count != 0:
-            print("Update Account")
-            user_input = input("Enter Account Number: ")
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            print(msgColors.GREEN + "Update Account" + msgColors.RESET)
+            print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
+            user_input = input(msgColors.YELLOW + "Enter Account Number: " + msgColors.RESET)
             if user_input.isdigit():
                 if len(user_input) == 6:
                     for account in self.accountList:
                         acc_num = account['accNum']
-                        print("Do you want to update this account? (Y/N)")
-                        user_choice = input("Enter your choice: ")
+                        user_choice = input(msgColors.YELLOW + "Do you want to update this account? (Y/N):  " + msgColors.RESET)
                         if user_choice == 'Y' or user_choice == 'y':
                             self.handleUpdateAcc(accNum=acc_num)
                         elif user_choice == 'N' or user_choice == 'n':
                             self.main()
                         else:
-                            print("Invalid input..")
+                            print(msgColors.RED + "Invalid input.." + msgColors.RESET)
                 else:
-                    print("Invalid Account Number...")
+                    print(msgColors.RED + "Invalid Account Number..." + msgColors.RESET)
             else:
-                print("Invalid Input...")
+                print(msgColors.RED + "Invalid Input..." + msgColors.RESET)
         else:
-            print("No Registered Account..")
+            print(msgColors.RED + "No Registered Account.." + msgColors.RESET)
     
     def updateAccMenu(self):
         print("Select option")
@@ -435,12 +436,12 @@ class MyClass:
                 if data['accNum'] == accNum:
                     for key, value in data.items():
                         if key == 'accNum':
-                            print(f"    {key}: {value}")
+                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                         else:
-                            print(f"        {key}: {value}")
+                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                     while userInput != 5:
                         self.updateAccMenu()
-                        userInput = input("Enter your choice: ")
+                        userInput = input(msgColors.YELLOW + "Enter your choice: " + msgColors.RESET)
                         if userInput.isdigit():
                             user_input = int(userInput)
                             if user_input == 1:
@@ -455,13 +456,13 @@ class MyClass:
                                 print("Back to main menu.")
                                 break
                             else:
-                                print("Invalid Input...")
+                                print(msgColors.RED + "Invalid Input..." + msgColors.RESET)
                         else:
-                            print("Invalid input...")    
+                            print(msgColors.RED + "Invalid input..." + msgColors.RESET)    
                 else:
-                    print("Account Not Found...")       
+                    print(msgColors.RED + "Account Not Found..." + msgColors.RESET)       
         else:
-            print("Invalid account number...")
+            print(msgColors.RED + "Invalid account number..." + msgColors.RESET)
     
     def updateAccName(self, accNum):
         title = "Update Account Name"
@@ -470,9 +471,9 @@ class MyClass:
         print(title)
         for i in self.accountList:
             if i[acc_num_key] == accNum:
-                new_acc_name = input("Enter new account name: ")
+                new_acc_name = input(msgColors.YELLOW + "Enter new account name: " + msgColors.RESET)
                 if not new_acc_name:
-                    print("Invalid Input...")
+                    print(msgColors.RED + "Invalid Input..."+ msgColors.RESET)
                 else:
                     if i[acc_num_key] == accNum:
                         i[update_key] = new_acc_name
@@ -487,9 +488,9 @@ class MyClass:
                         self.displayAllAccount()
                         print()
                     else:
-                        print("Invalid Account number...")
+                        print(msgColors.RED + "Invalid Account number..."+ msgColors.RESET)
             else:
-                print("Invalid Account number...")
+                print(msgColors.RED + "Invalid Account number..."+ msgColors.RESET)
         print()
         
     def updateAccType(self, accNum):
@@ -500,9 +501,9 @@ class MyClass:
         
         for i in self.accountList:
             if i[acc_num_key] == accNum:
-                new_acc_type = input("Enter New Account Type: ")
+                new_acc_type = input(msgColors.YELLOW + "Enter New Account Type: " + msgColors.RESET)
                 if not new_acc_type:
-                    print("Invalid Input...")
+                    print(msgColors.RED + "Invalid Input..."+ msgColors.RESET)
                 else:
                     if i[acc_num_key] == accNum:
                         i[update_key] = new_acc_type
@@ -517,9 +518,9 @@ class MyClass:
                         self.displayAllAccount()
                         print()
                     else:
-                        print("Invalid Account Number...")
+                        print(msgColors.RED + "Invalid Account Number..." + msgColors.RESET)
             else:
-                print("Invalid Account Number...")
+                print(msgColors.RED + "Invalid Account Number..." + msgColors.RESET)
         print()
         
     def updateGender(self, accNum):
@@ -531,7 +532,7 @@ class MyClass:
         
         for i in self.accountList:
             if i[acc_num_key] == accNum:
-                new_gender = input("Enter New Gender:")
+                new_gender = input(msgColors.YELLOW + "Enter New Gender:" + msgColors.RESET)
                 if not new_gender:
                     print(msgColors.RED + "Invalid input..." + msgColors.YELLOW)
                 else:
