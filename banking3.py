@@ -88,7 +88,7 @@ class MyClass:
                                 elif user_input == 2:
                                     self.handleWithdraw(accNum=account[acc_num_key])
                                 elif user_input == 3:
-                                    self.handleTransferFund(accNum=account[acc_num_keyl])
+                                    self.handleTransferFund(accNum=account[acc_num_key])
                                 elif user_input == 4:
                                     print( msgColors.GREEN + "Back to main menu..." + msgColors.RESET)
                                     break
@@ -102,24 +102,25 @@ class MyClass:
             print(msgColors.RED + "There's no Register Account..." + msgColors.RESET)
         
     def displayAllAccount(self):
-        
         count = len(self.accountList)
-        
+        print(msgColors.GREEN + "="*40 + msgColors.RESET)
+        print(msgColors.GREEN + "Display All Account." + msgColors.RESET)
+        print(msgColors.GREEN + "="*40 + msgColors.RESET)
+        print(msgColors.GREEN + "Total Number if Account: " + msgColors.RESET + str(count))
         if count == 0:
             print(msgColors.RED + "No Account has been registered..." + msgColors.RESET)
         elif count != 0:
-            print(msgColors.GREEN + "Display All Account." + msgColors.RESET)
-            print(msgColors.GREEN + "Total Number if Account: " + msgColors.RESET + str(count))
+            
             for data in self.accountList:
                 for key, value in data.items():
                     if key == 'accNum':
+                        print(msgColors.GREEN + "-"*40 + msgColors.RESET)
                         print(msgColors.GREEN + " " + str(key) + ": " + msgColors.RESET + str(value))
                     else:
                         print(msgColors.GREEN + "   " + str(key) + ": " + msgColors.RESET + str(value))
-                
         else:
             print(msgColors.RED + "No Valid Arrays..." + msgColors.RESET)
-    
+        print(msgColors.GREEN + "="*40 + msgColors.RESET)
     def transactionHistory(self):
         count = len(self.transactionList)
         
@@ -149,7 +150,7 @@ class MyClass:
             print(msgColors.GREEN + "Transaction Logs" + msgColors.RESET)
             print(msgColors.GREEN + "=" * 30 + msgColors.RESET)
             for acc_num in sorted_acc_num:
-                print(msgColors.GREEN + f"Account Number: {acc_num}" + msgColors.RESET)
+                print(msgColors.GREEN + f"Account Number: " + msgColors.RESET + str(acc_num))
                 details = acc_num_list[acc_num]
                 for date, transactions, in details['transactions'].items():
                     print(msgColors.GREEN + "  Date: " + msgColors.RESET + str(date))
@@ -267,7 +268,7 @@ class MyClass:
             for i, x in enumerate(top_3):
                 print(msgColors.GREEN + "  Top: " + msgColors.RESET + str(i+1))
                 for key, value in x.items():
-                    print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
+                    print(msgColors.GREEN + "   " + str(key) + ": " + msgColors.RESET + str(value))
                 print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
         else:
             print(msgColors.RED + "No Registered Account..." + msgColors.RESET)
@@ -319,7 +320,7 @@ class MyClass:
                     
             count_gold = len(gold)
             print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
-            print(msgColors.GREEN + "Silver" + msgColors.RESET)
+            print(msgColors.GREEN + "Gold" + msgColors.RESET)
             print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             if count_gold != 0:
                 for data in gold:
@@ -327,7 +328,7 @@ class MyClass:
                         if key == 'accNum':
                             print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                         else:
-                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
+                            print(msgColors.GREEN +  "   " + str(key) + ": " + msgColors.RESET + str(value))
                     print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             else:
                 print(msgColors.RED + err_level_acc + msgColors.RESET)
@@ -343,7 +344,7 @@ class MyClass:
                         if key == 'accNum':
                             print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                         else:
-                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
+                            print(msgColors.GREEN +  "   " + str(key) + ": " + msgColors.RESET + str(value))
                     print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             else:
                 print(msgColors.RED + err_level_acc + msgColors.RESET)
@@ -359,7 +360,7 @@ class MyClass:
                         if key == 'accNum':
                             print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                         else:
-                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
+                            print(msgColors.GREEN +  "   " + str(key) + ": " + msgColors.RESET + str(value))
                     print(msgColors.GREEN + "-" * 40 + msgColors.RESET)
             else:
                 print(msgColors.RED + err_level_acc + msgColors.RESET)
@@ -396,7 +397,7 @@ class MyClass:
             print(msgColors.RED + "No Registerd Account found!.." + msgColors.RESET)  
         
     def updateAcc(self):
-        #acc_num_key = 'accNum'
+        acc_num_key = 'accNum'
         count = len(self.accountList)
         if count != 0:
             print(msgColors.GREEN + "=" * 40 + msgColors.RESET)
@@ -406,14 +407,15 @@ class MyClass:
             if user_input.isdigit():
                 if len(user_input) == 6:
                     for account in self.accountList:
-                        acc_num = account['accNum']
-                        user_choice = input(msgColors.YELLOW + "Do you want to update this account? (Y/N):  " + msgColors.RESET)
-                        if user_choice == 'Y' or user_choice == 'y':
-                            self.handleUpdateAcc(accNum=acc_num)
-                        elif user_choice == 'N' or user_choice == 'n':
-                            self.main()
-                        else:
-                            print(msgColors.RED + "Invalid input.." + msgColors.RESET)
+                        if acc_num_key in account and account[acc_num_key] == str(user_input):
+                            acc_num = account['accNum']
+                            user_choice = input(msgColors.YELLOW + "Do you want to update this account? (Y/N):  " + msgColors.RESET)
+                            if user_choice == 'Y' or user_choice == 'y':
+                                self.handleUpdateAcc(accNum=acc_num)
+                            elif user_choice == 'N' or user_choice == 'n':
+                                self.main()
+                            else:
+                                print(msgColors.RED + "Invalid input.." + msgColors.RESET)
                 else:
                     print(msgColors.RED + "Invalid Account Number..." + msgColors.RESET)
             else:
@@ -422,24 +424,32 @@ class MyClass:
             print(msgColors.RED + "No Registered Account.." + msgColors.RESET)
     
     def updateAccMenu(self):
-        print("Select option")
-        print("1. Update account name.")
-        print("2. Update account type.")
-        print("3. Update Gender.")
-        print("4. Update Address.")
-        print("5. Back to Main Menu")
+        print(msgColors.GREEN + "="*40 + msgColors.RESET)
+        print(msgColors.GREEN + "Select option" + msgColors.RESET)
+        print(msgColors.GREEN + "="*40 + msgColors.RESET)
+        print(msgColors.GREEN + "1. Update account name." + msgColors.RESET)
+        print(msgColors.GREEN + "2. Update account type." + msgColors.RESET)
+        print(msgColors.GREEN + "3. Update Gender." + msgColors.RESET)
+        print(msgColors.GREEN + "4. Update Address." + msgColors.RESET)
+        print(msgColors.GREEN + "5. Back to Main Menu" + msgColors.RESET)
+        print(msgColors.GREEN + "="*40 + msgColors.RESET)
     
     def handleUpdateAcc(self, accNum):
+        title = "Update Account"
         userInput = 0
         if accNum != 0:
             for data in self.accountList:
                 if data['accNum'] == accNum:
-                    for key, value in data.items():
-                        if key == 'accNum':
-                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
-                        else:
-                            print(msgColors.GREEN +  str(key) + ": " + msgColors.RESET + str(value))
                     while userInput != 5:
+                        print(msgColors.GREEN + "="*40 + msgColors.RESET)
+                        print( msgColors.GREEN +  title + msgColors.RESET)
+                        print(msgColors.GREEN + "="*40 + msgColors.RESET)
+                        for key, value in data.items():
+                            if accNum != 0:
+                                if key == 'accNum':
+                                    print(msgColors.GREEN +  " " + str(key) + ": " + msgColors.RESET + str(value))
+                                else:
+                                    print(msgColors.GREEN +  "  " + str(key) + ": " + msgColors.RESET + str(value))
                         self.updateAccMenu()
                         userInput = input(msgColors.YELLOW + "Enter your choice: " + msgColors.RESET)
                         if userInput.isdigit():
@@ -459,16 +469,12 @@ class MyClass:
                                 print(msgColors.RED + "Invalid Input..." + msgColors.RESET)
                         else:
                             print(msgColors.RED + "Invalid input..." + msgColors.RESET)    
-                else:
-                    print(msgColors.RED + "Account Not Found..." + msgColors.RESET)       
-        else:
-            print(msgColors.RED + "Invalid account number..." + msgColors.RESET)
     
     def updateAccName(self, accNum):
         title = "Update Account Name"
         acc_num_key = 'accNum'
         update_key = 'accName'
-        print(title)
+        print( msgColors.GREEN +  title + msgColors.RESET)
         for i in self.accountList:
             if i[acc_num_key] == accNum:
                 new_acc_name = input(msgColors.YELLOW + "Enter new account name: " + msgColors.RESET)
@@ -489,15 +495,13 @@ class MyClass:
                         print()
                     else:
                         print(msgColors.RED + "Invalid Account number..."+ msgColors.RESET)
-            else:
-                print(msgColors.RED + "Invalid Account number..."+ msgColors.RESET)
-        print()
+        
         
     def updateAccType(self, accNum):
         title = "Update accout type"
         acc_num_key = 'accNum'
         update_key = 'accType'
-        print(title)
+        print( msgColors.GREEN +  title + msgColors.RESET)
         
         for i in self.accountList:
             if i[acc_num_key] == accNum:
@@ -519,17 +523,12 @@ class MyClass:
                         print()
                     else:
                         print(msgColors.RED + "Invalid Account Number..." + msgColors.RESET)
-            else:
-                print(msgColors.RED + "Invalid Account Number..." + msgColors.RESET)
-        print()
         
     def updateGender(self, accNum):
         title = "Update gender"
         acc_num_key = 'accNum'
         update_key = 'userGender'
-        
-        print(title)
-        
+        print( msgColors.GREEN +  title + msgColors.RESET)
         for i in self.accountList:
             if i[acc_num_key] == accNum:
                 new_gender = input(msgColors.YELLOW + "Enter New Gender:" + msgColors.RESET)
@@ -550,16 +549,13 @@ class MyClass:
                         print()
                     else:
                         print(msgColors.RED + "Invalid Input..." + msgColors.YELLOW)
-            else:
-                print(msgColors.RED + "Invalid input..." + msgColors.YELLOW)
-        print()
         
     def updateAddress(self, accNum):
         title =  "Update address"
         acc_num_key = 'accNum'
         update_key = 'userAddress'
         
-        print(title)
+        print( msgColors.GREEN +  title + msgColors.RESET)
         
         for i in self.accountList:
             if i[acc_num_key] == accNum:
@@ -577,9 +573,7 @@ class MyClass:
                         )
                         self.displayAllAccount()
                     else:
-                        print(msgColors.RED + "Invalid Input..." + msgColors.RESET)
-            else:
-                print(msgColors.RED + "Invalid account number..." + msgColors.RESET)      
+                        print(msgColors.RED + "Invalid Input..." + msgColors.RESET)     
     
 # run the program
 if __name__ == "__main__":
