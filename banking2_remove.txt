@@ -1,0 +1,50 @@
+# if any(acc_Num == accNum for acc_Num in i.values()):
+            #     print("\nUser Id is Existing...\n")
+            #     print(
+            #         " Account_Number:", i['accNum'],
+            #         " Account_Name:", i['accName'],
+            #         " Account_Type:", i['accType'],
+            #         " User_Gender:", i['userGender'],
+            #         " User_Address:", i['userAddress'],
+            #         " Balance:", i['balance'],
+            #     )
+            #     while self.userInput != 3:
+            #         self.existingAccMenu()
+            #         self.userInput = int(input("Enter Trasnsaction: "))
+            #         if self.userInput == 1:
+            #             self.handleDeposit(accNum=i['accNum'])
+            #         elif self.userInput == 2:
+            #             self.handleWithdraw(accNum=i['accNum'])
+            #         elif self.userInput == 3:
+            #             print("Back to main menu")
+
+keys = 'accNum'
+        print("\nUse Existing Account.")
+        for key in self.accountList:
+            if keys in key:
+                accNum = int(input("Enter Account Number: "));
+                if key[keys] == str(accNum):
+                    print("\nAccount Number is Existing...\n")
+                    print(
+                        " Account_Number:", key[keys],
+                        " Account_Name:", key['accName'],
+                        " Account_Type:", key['accType'],
+                        " User_Gender:", key['userGender'],
+                        " User_Address:", key['userAddress'],
+                        " Balance:", key['balance'],
+                    )
+                    while self.userInput != 3:
+                        self.existingAccMenu()
+                        self.userInput = int(input("Enter Trasnsaction: "))
+                        if self.userInput == 1:
+                            self.handleDeposit(accNum=key['accNum'])
+                        elif self.userInput == 2:
+                            self.handleWithdraw(accNum=key['accNum'])
+                        elif self.userInput == 3:
+                            print("Back to main menu")
+                else:
+                    print("Account Number Not Found...")
+                    self.mainMenu()
+            else:
+                print("Key Not Found...")
+                self.mainMenu()

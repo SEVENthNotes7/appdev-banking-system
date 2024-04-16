@@ -1,0 +1,49 @@
+#print(id_dicts)
+# if count == 0:
+#     print(msgColors.RED + "No Transaction has been save..." + msgColors.RESET)
+# elif count != 0:
+#     print(msgColors.GREEN + "Transaction History." + msgColors.RESET)
+#     for i in self.transactionList:
+        
+#         print(" Title:", i['Title']," Transaction Ammount:", i['Transaction_Ammount']," Transaction Reference:", i['Transaction_Reference']," Created By:", i['Created_By']," Balance:", i['balance']," Date Updated:", i['updated_at']
+#         )
+# else:
+#     print(msgColors.RED + "No Valid Arrays..." + msgColors.RESET )
+
+
+
+# for a in enumerate(self.transactionList, start=1):
+# #     print(f"Index: {a}")
+# for x in self.transactionList:
+#     created_by = x['Created_By']
+#     if created_by not in author_list:
+        
+
+#     # sorted_author = sorted(author_list.items(), key=lambda b: b[1]['Created_By'])
+
+#     # for y, z in sorted_author:
+#     #     print(f" Created_By: {y}")
+#     #     for key, value in z.items():
+#     #         print("  {key}: {value}")
+#     #     print()
+
+
+
+
+# for i in self.transactionList:
+#     # print(i)
+#     acc_num = int(i['Created_By'])
+#     if acc_num not in author_list:
+#         author_list.append(acc_num)
+#     else:
+#         print("naa")
+
+
+sorted_list = sorted(self.transactionList, key=lambda x: x['Created_By'])
+            for i in sorted_list:
+                for key, value in i.items():
+                    print(key, ":", value)
+
+
+# print(" Account Number:", i['accNum']," Account Name:", i['accName']," Account Type:", i['accType']," User Gender:", i['userGender']," User Address:", i['userAddress']," Balance:", i['balance'],
+                #     )
