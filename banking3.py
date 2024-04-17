@@ -75,9 +75,13 @@ class MyClass:
                 for account in self.accountList:
                     if acc_num_key in account and account[acc_num_key] == str(acc_num):
                         print(msgColors.GREEN + "Successfully Login" + msgColors.RESET)
-                        print(
-                            " Account Number:", account[acc_num_key], "Account Name:", account['accName'], "Account Type:", account['accType'], "User Gender:", account['userGender'], "User Address:", account['userAddress'], "Balance:", account['balance'],
-                        )
+                        for key, value in account.items():
+                            if key == acc_num_key:
+                                print(msgColors.GREEN + "-"*40 + msgColors.RESET)
+                                print(msgColors.GREEN + " " + str(key) + ": " + msgColors.RESET + str(value))
+                            else:
+                                print(msgColors.GREEN + "   " + str(key) + ": " + msgColors.RESET + str(value))
+                        print(msgColors.GREEN + "-"*40 + msgColors.RESET)
                         while True:
                             self.existingAccMenu()
                             self.userInput = input(msgColors.YELLOW + "Enter Trasnsaction: " + msgColors.RESET)
@@ -121,6 +125,7 @@ class MyClass:
         else:
             print(msgColors.RED + "No Valid Arrays..." + msgColors.RESET)
         print(msgColors.GREEN + "="*40 + msgColors.RESET)
+        
     def transactionHistory(self):
         count = len(self.transactionList)
         
@@ -232,7 +237,35 @@ class MyClass:
             print(msgColors.RED + "Invalid Input..." + msgColors.RESET)
     
     def handleTransferFund(self, accNum):
-        ...
+        title = "Transfer Fund"
+        acc_num_key = 'accNum'
+        sender_acc_num = accNum
+        
+        sender_balance = 0
+        fund = 0
+        
+        for account in self.accountList:
+            if acc_num_key in account and account[acc_num_key] == str(sender_acc_num):
+                sender_balance += float(account['balance'])
+        
+        print(title)
+        reciever_acc_num = input("Enter Reciever Account number: ")
+        if len(reciever_acc_num) == 6:
+            # if sender_balance > 1000 and fund > 1000:
+            for account in self.accountList:
+                if acc_num_key in account and account[acc_num_key] == str(reciever_acc_num):
+                    fund = input("Enter fund to transfer: ")
+                    new_bal = float(account['balance']) + float(fund)
+                    account['balance'] = str(new_bal)
+                    self.handleSaveTransaction(accNum=account[acc_num_key], Title=title, transacAmm=fund ,balance=account['balance'])
+                    
+            for account in self.accountList:
+                if acc_num_key in account and account[acc_num_key] == str(sender_acc_num):
+                    new_bal = float(account['balance']) - float(fund)
+                    account['balance'] = str(new_bal)
+                    self.handleSaveTransaction(accNum=account[acc_num_key], Title=title, transacAmm=fund ,balance=account['balance'])
+        else:
+            print(msgColors.RED + "Invalid Account number..." + msgColors.RESET)
         
     def handleSaveTransaction(self, Title, transacAmm, accNum, balance):
         todays_date = datetime.date.today()

@@ -47,3 +47,7 @@ sorted_list = sorted(self.transactionList, key=lambda x: x['Created_By'])
 
 # print(" Account Number:", i['accNum']," Account Name:", i['accName']," Account Type:", i['accType']," User Gender:", i['userGender']," User Address:", i['userAddress']," Balance:", i['balance'],
                 #     )
+
+# print(
+#     " Account Number:", account[acc_num_key], "Account Name:", account['accName'], "Account Type:", account['accType'], "User Gender:", account['userGender'], "User Address:", account['userAddress'], "Balance:", account['balance'],
+# )
